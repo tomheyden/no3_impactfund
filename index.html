@@ -52,8 +52,8 @@
   --r-3: 8px;
 
   /* Content */
-  --maxw: 1120px;
-  --maxw-narrow: 880px;
+  --maxw: 1240px;
+  --maxw-narrow: 920px;
 }
 
 /* =========================================================
@@ -528,25 +528,26 @@ section.dark .body, section.dark .body-lead { color: rgba(255,255,255,0.72); }
 .agronomic-scroll { overflow-x: auto; padding-bottom: 8px; }
 .agronomic-flow {
   display: flex; align-items: stretch; gap: 0;
-  min-width: min-content;
+  width: 100%;
 }
 .agro-step {
-  flex: 1 0 0;
-  min-width: 150px;
+  flex: 1 1 0;
+  min-width: 128px;
   background: #fff; border: 1px solid var(--border);
   border-radius: var(--r-2);
-  padding: 20px;
+  padding: 18px 16px;
   display: flex; flex-direction: column; justify-content: space-between;
   box-shadow: var(--shadow-1);
 }
 .agro-step .kicker { margin: 0 0 8px; font-size: 10px; letter-spacing: 0.14em; }
-.agro-step .num { font-size: 1.5rem; font-weight: 300; letter-spacing: -0.025em; color: var(--ink-900); font-variant-numeric: tabular-nums; line-height: 1.1; }
-.agro-step .sub { font-size: 0.8125rem; color: var(--ink-400); margin-top: 6px; }
+.agro-step .num { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.02em; color: var(--ink-900); font-variant-numeric: tabular-nums; line-height: 1.15; }
+.agro-step .sub { font-size: 0.8125rem; color: var(--ink-400); margin-top: 6px; line-height: 1.35; }
 .agro-arrow {
-  flex: none; min-width: 72px;
+  flex: 0 0 auto; width: 72px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   color: var(--ink-400); font-size: 11px; gap: 6px;
-  padding: 0 8px;
+  padding: 0 4px;
+  text-align: center;
 }
 .agro-arrow .factor {
   background: var(--amber-100); color: #8a5a0c;
@@ -914,87 +915,112 @@ footer.site-footer {
 
       <div class="reveal">
         <div class="flow-diagram">
-          <svg class="flow-svg" viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg" aria-labelledby="flowTitle">
+          <svg class="flow-svg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" aria-labelledby="flowTitle">
             <title id="flowTitle">Capital and outcome payment flow</title>
             <defs>
-              <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
                 <path d="M0,0 L10,5 L0,10 z" fill="#1a7a5e"/>
-              </marker>
-              <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill="#e8a020"/>
               </marker>
             </defs>
 
-            <!-- Connecting paths with animated dashes -->
-            <g fill="none" stroke="#1a7a5e" stroke-width="1.4" marker-end="url(#arrowGreen)" class="flow-path">
-              <path d="M 90 60 L 200 60" />
-              <path d="M 310 60 L 420 60" />
-              <path d="M 460 85 L 460 180" />
-              <path d="M 420 210 L 310 210" />
-              <path d="M 200 210 L 90 210" />
-              <path d="M 60 235 L 60 325" />
-              <path d="M 90 350 L 460 350" />
-            </g>
-            <g fill="none" stroke="#e8a020" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrowAmber)">
-              <path d="M 200 350 L 200 250" />
-              <path d="M 260 350 L 260 250" />
-              <path d="M 320 350 L 320 250" />
+            <!-- Return loop (dashed), drawn behind so arrowhead lands cleanly into card 1 -->
+            <path d="M 360 362 L 465 362 L 465 48 L 370 48"
+                  stroke="#1a7a5e" stroke-width="1.4" fill="none"
+                  stroke-linejoin="round" stroke-dasharray="5 4"
+                  marker-end="url(#arrG)" opacity="0.75"/>
+            <text x="493" y="205" text-anchor="middle"
+                  font-family="Inter" font-size="10" font-weight="500"
+                  fill="#1a7a5e" letter-spacing="1.2"
+                  transform="rotate(90 493 205)">RETURNS · €39.9M</text>
+
+            <!-- Vertical connector arrows between cards -->
+            <g stroke="#1a7a5e" stroke-width="1.4" fill="none" marker-end="url(#arrG)">
+              <path d="M 210 76 L 210 92"/>
+              <path d="M 210 150 L 210 166"/>
+              <path d="M 210 228 L 210 244"/>
+              <path d="M 210 306 L 210 322"/>
             </g>
 
-            <!-- Top row: Investors → Fund → Service Providers -->
-            <g class="flow-node">
-              <rect x="20" y="35" width="180" height="50" rx="6" fill="#fff" stroke="#cfdbd6"/>
-              <text x="110" y="58" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#0b2a22">Investors</text>
-              <text x="110" y="74" text-anchor="middle" font-family="Inter" font-size="10" fill="#6a827c">DFIs · Insurers · Foundations · FOs</text>
-            </g>
-            <g>
-              <rect x="220" y="30" width="90" height="60" rx="6" fill="#1a7a5e"/>
-              <text x="265" y="56" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#fff">NO3 Fund</text>
-              <text x="265" y="72" text-anchor="middle" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.8)">€20M · 10yr</text>
-            </g>
-            <g>
-              <rect x="330" y="35" width="180" height="50" rx="6" fill="#fff" stroke="#cfdbd6"/>
-              <text x="420" y="58" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#0b2a22">Service Providers</text>
-              <text x="420" y="74" text-anchor="middle" font-family="Inter" font-size="10" fill="#6a827c">Equipment · Agronomy · Data</text>
+            <!-- Step labels between cards (right of arrows) -->
+            <g font-family="Inter" font-size="9.5" fill="#6a827c" letter-spacing="0.4">
+              <text x="220" y="87">€20M capital commitments</text>
+              <text x="220" y="161">deploys equipment &amp; data</text>
+              <text x="220" y="239">reduces leaching</text>
+              <text x="220" y="317">triggers outcome payments</text>
             </g>
 
-            <!-- Middle row: Farmers ← -->
+            <!-- 1. Investors -->
             <g>
-              <rect x="330" y="185" width="180" height="50" rx="6" fill="#fff" stroke="#cfdbd6"/>
-              <text x="420" y="208" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#0b2a22">Farmers · 200,000 ha</text>
-              <text x="420" y="224" text-anchor="middle" font-family="Inter" font-size="10" fill="#6a827c">Zero-cost adoption</text>
-            </g>
-            <g>
-              <rect x="220" y="185" width="90" height="50" rx="6" fill="#fff" stroke="#cfdbd6"/>
-              <text x="265" y="208" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#0b2a22">Verified</text>
-              <text x="265" y="222" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#1a7a5e">NO₃ reduction</text>
-            </g>
-            <g>
-              <rect x="20" y="185" width="180" height="50" rx="6" fill="#fff" stroke="#cfdbd6"/>
-              <text x="110" y="208" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#0b2a22">Outcome Payments</text>
-              <text x="110" y="224" text-anchor="middle" font-family="Inter" font-size="10" fill="#6a827c">Stream 1 + Stream 2</text>
+              <rect x="60" y="22" width="300" height="54" rx="8" fill="#fff" stroke="#cfdbd6"/>
+              <circle cx="88" cy="49" r="14" fill="#f1f9f4" stroke="#cde3d8"/>
+              <text x="88" y="53" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#1a7a5e">1</text>
+              <text x="112" y="45" font-family="Inter" font-size="13" font-weight="500" fill="#0b2a22">Investors</text>
+              <text x="112" y="63" font-family="Inter" font-size="11" fill="#6a827c">DFIs · Insurers · Foundations · FOs</text>
             </g>
 
-            <!-- Bottom row: Stakeholders -->
+            <!-- 2. NO3 Impact Fund (accent) -->
             <g>
-              <rect x="80" y="325" width="120" height="50" rx="6" fill="#fdf1d8" stroke="rgba(232,160,32,0.4)"/>
-              <text x="140" y="348" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#8a5a0c">Government</text>
-              <text x="140" y="362" text-anchor="middle" font-family="Inter" font-size="10" fill="#8a5a0c">€400/t</text>
+              <rect x="60" y="96" width="300" height="54" rx="8" fill="#1a7a5e"/>
+              <circle cx="88" cy="123" r="14" fill="rgba(255,255,255,0.15)"/>
+              <text x="88" y="127" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#fff">2</text>
+              <text x="112" y="119" font-family="Inter" font-size="13" font-weight="500" fill="#fff">NO3 Impact Fund</text>
+              <text x="112" y="137" font-family="Inter" font-size="11" fill="rgba(255,255,255,0.82)">€20M · 10yr · SFDR Article 9</text>
             </g>
+
+            <!-- 3. Precision agriculture -->
             <g>
-              <rect x="210" y="325" width="100" height="50" rx="6" fill="#fdf1d8" stroke="rgba(232,160,32,0.4)"/>
-              <text x="260" y="348" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#8a5a0c">Utilities</text>
-              <text x="260" y="362" text-anchor="middle" font-family="Inter" font-size="10" fill="#8a5a0c">€350/t</text>
+              <rect x="60" y="170" width="300" height="58" rx="8" fill="#fff" stroke="#cfdbd6"/>
+              <circle cx="88" cy="199" r="14" fill="#f1f9f4" stroke="#cde3d8"/>
+              <text x="88" y="203" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#1a7a5e">3</text>
+              <text x="112" y="195" font-family="Inter" font-size="13" font-weight="500" fill="#0b2a22">Precision agriculture</text>
+              <text x="112" y="213" font-family="Inter" font-size="11" fill="#6a827c">200,000 ha · farmers adopt at zero cost</text>
             </g>
+
+            <!-- 4. Verified NO3 reduction -->
             <g>
-              <rect x="320" y="325" width="100" height="50" rx="6" fill="#fdf1d8" stroke="rgba(232,160,32,0.4)"/>
-              <text x="370" y="348" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#8a5a0c">GKV</text>
-              <text x="370" y="362" text-anchor="middle" font-family="Inter" font-size="10" fill="#8a5a0c">€200/t</text>
+              <rect x="60" y="248" width="300" height="58" rx="8" fill="#fff" stroke="#cfdbd6"/>
+              <circle cx="88" cy="277" r="14" fill="#f1f9f4" stroke="#cde3d8"/>
+              <text x="88" y="281" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#1a7a5e">4</text>
+              <text x="112" y="273" font-family="Inter" font-size="13" font-weight="500" fill="#0b2a22">Verified NO₃ reduction</text>
+              <text x="112" y="291" font-family="Inter" font-size="11" fill="#6a827c">~10,000 tons / year · ISO 14064-aligned</text>
+            </g>
+
+            <!-- 5. Outcome Payments (dark card with stakeholder tags) -->
+            <g>
+              <rect x="60" y="326" width="300" height="80" rx="8" fill="#0b2a22"/>
+              <circle cx="88" cy="350" r="14" fill="rgba(232,160,32,0.22)"/>
+              <text x="88" y="354" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#e8a020">5</text>
+              <text x="112" y="346" font-family="Inter" font-size="13" font-weight="500" fill="#fff">Outcome Payments</text>
+              <text x="112" y="362" font-family="Inter" font-size="10" fill="rgba(255,255,255,0.58)">Paid per verified ton NO₃ reduced · blended €950/t</text>
+
+              <!-- Stakeholder tags -->
+              <g font-family="Inter" font-size="10.5" font-weight="500">
+                <rect x="72" y="374" width="90" height="22" rx="4" fill="rgba(232,160,32,0.14)" stroke="rgba(232,160,32,0.35)"/>
+                <text x="117" y="389" text-anchor="middle" fill="#e8a020">Gov · €400/t</text>
+
+                <rect x="168" y="374" width="90" height="22" rx="4" fill="rgba(232,160,32,0.14)" stroke="rgba(232,160,32,0.35)"/>
+                <text x="213" y="389" text-anchor="middle" fill="#e8a020">Utilities · €350/t</text>
+
+                <rect x="264" y="374" width="90" height="22" rx="4" fill="rgba(232,160,32,0.14)" stroke="rgba(232,160,32,0.35)"/>
+                <text x="309" y="389" text-anchor="middle" fill="#e8a020">GKV · €200/t</text>
+              </g>
+            </g>
+
+            <!-- Summary line -->
+            <g font-family="Inter" font-size="10.5" fill="#6a827c">
+              <text x="60" y="442" font-weight="500" fill="#46615a">€20M in</text>
+              <text x="118" y="442">·</text>
+              <text x="130" y="442" font-weight="500" fill="#1a7a5e">~€39.9M distributed over 10 years</text>
+            </g>
+            <line x1="60" y1="454" x2="360" y2="454" stroke="#e4ece9" stroke-width="1"/>
+            <g font-family="Inter" font-size="10" fill="#6a827c">
+              <text x="60" y="476">Net to LPs after fees and preferred return: ~11% IRR</text>
             </g>
           </svg>
           <div class="flow-legend">
-            <span><span class="dot" style="background:#1a7a5e"></span>Capital & services</span>
-            <span><span class="dot" style="background:#e8a020"></span>Outcome payments</span>
+            <span><span class="dot" style="background:#1a7a5e"></span>Capital flow</span>
+            <span><span class="dot" style="background:#e8a020"></span>Outcome payers</span>
+            <span style="margin-left:auto; color: var(--ink-400);">Dashed line = LP distributions</span>
           </div>
         </div>
       </div>
