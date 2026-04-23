@@ -209,6 +209,19 @@ section.dark .body, section.dark .body-lead { color: rgba(255,255,255,0.72); }
   text-decoration: none;
 }
 .nav-links a.nav-cta:hover { background: var(--green-800); color: #ffffff; }
+.nav-links a.nav-cta-ghost {
+  background: transparent;
+  color: var(--green-700);
+  border: 1px solid var(--green-700);
+  padding: 6px 13px;
+  border-radius: var(--r-1);
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 6px;
+  transition: background 160ms ease, color 160ms ease;
+  text-decoration: none;
+}
+.nav-links a.nav-cta-ghost:hover { background: var(--green-700); color: #ffffff; }
 .nav-toggle { display: none; }
 @media (max-width: 860px) {
   .nav-links { display: none; }
@@ -771,7 +784,8 @@ footer.site-footer {
       <a href="#returns">Returns</a>
       <a href="#terms">Term Sheet</a>
       <a href="#investors">Investors</a>
-      <a class="nav-cta" href="#terms">Download Prospectus</a>
+      <a class="nav-cta" href="src/NO3_Impact_Fund_Prospectus.pdf" download>Prospectus</a>
+      <a class="nav-cta-ghost" href="src/NO3_Impact_Fund_Pitchdeck.pdf" download>Pitchdeck</a>
     </nav>
     <button class="nav-toggle" aria-label="Toggle menu" id="navToggle"><span></span></button>
   </div>
